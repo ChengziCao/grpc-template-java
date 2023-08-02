@@ -8,24 +8,24 @@ I tested it on macOS with JDK11, theoretically it is also fully available for Wi
 
 RPC-Client
 
-- ClientApplication.java      # Entry point of the client application
-- pojo.ServerConnectionConfig.java    # POJO class to hold server connection configuration
-- rpc.RPCClient.java        # Client implementation to communicate with the gRPC server
-- rpc.RPCThread.java        # Thread class for handling gRPC requests asynchronously
-- resources/config.json     # JSON configuration file containing server connection details
+- ClientApplication.java: Entry point of the client application
+- pojo.ServerConnectionConfig.java: POJO class to hold server connection configuration
+- rpc.RPCClient.java: Client implementation to communicate with the gRPC server
+- rpc.RPCThread.java: Thread class for handling gRPC requests asynchronously
+- resources/config.json: JSON configuration file containing server connection details
 
 RPC-Core
 
-- rpc.RPCHelloServiceGrpc.java    # gRPC-generated service class for defining the Hello service
-- rpc.RPCService.java    # Custom implementation of the Hello service
-- utils.PathUtils.java    # Utility class for handling file paths
-- resources/common.proto    # Protocol Buffers file defining the service messages and methods
+- rpc.RPCHelloServiceGrpc.java: gRPC-generated service class for defining the Hello service
+- rpc.RPCService.java: Custom implementation of the Hello service
+- utils.PathUtils.java: Utility class for handling file paths
+- resources/common.proto: Protocol Buffers file defining the service messages and methods
 
 RPC-Server
 
-- ServerApplication.java    # Entry point of the server application
-- rpc.RPCHelloImp.java    # Implementation of the Hello service interface
-- rpc.RPCServer.java    # Server implementation to start the gRPC server
+- ServerApplication.java: Entry point of the server application
+- rpc.RPCHelloImp.java: Implementation of the Hello service interface
+- rpc.RPCServer.java: Server implementation to start the gRPC server
 
 ## Test
 
