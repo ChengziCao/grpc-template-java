@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+// Whether to generate multiple Java files
+option java_multiple_files = false;
+
+// Define the package for generated Java files
+option java_package = "com.template.rpc";
+
+// Define the outer class name for generated Java files
+option java_outer_classname = "RPCService";
+
+// Message definition for HelloMessage
+message HelloMessage {
+  required string message = 1;
+}
+
+// Service definition for RPCService
+service RPCHelloService {
+  rpc hello (HelloMessage) returns (HelloMessage) {}  // Execute query and return ResultSet
+}

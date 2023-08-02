@@ -1,0 +1,16 @@
+{
+  "endpoints": [
+    {
+      "ip": "localhost",
+      "port": 9991
+    },
+    {
+      "ip": "localhost",
+      "port": 9992
+    },
+    {
+      "ip": "localhost",
+      "port": 9993
+    }
+  ]
+}
