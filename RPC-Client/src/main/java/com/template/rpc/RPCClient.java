@@ -3,6 +3,7 @@ package com.template.rpc;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.template.pojo.ServerConnectionConfig;
+import com.template.rpc.impl.RPCInterface;
 import com.template.utils.PathUtils;
 import com.template.rpc.RPCService.HelloMessage;
 
@@ -15,8 +16,8 @@ import java.util.concurrent.*;
 public class RPCClient {
 
     public static ExecutorService executorService;
-    private List<ServerConnectionConfig.Endpoint> endpoints = new ArrayList<>();
-    public static List<RPCThread> rpcThreads = new ArrayList<>();
+    private List<ServerConnectionConfig.Endpoint> endpoints;
+    public static List<RPCInterface> rpcInterfaces = new ArrayList<>();
 
     public RPCClient(String configFile) throws IOException {
         String jsonString = new String(Files.readAllBytes(Paths.get(PathUtils.getRealPath(configFile))));
@@ -28,7 +29,7 @@ public class RPCClient {
         endpoints = configData.endpoints;
         // Print the result
         for (ServerConnectionConfig.Endpoint endpoint : endpoints) {
-            rpcThreads.add(new RPCThread(endpoint.getIp(), endpoint.getPort()));
+            rpcInterfaces.add(new RPCInterface(endpoint.getIp(), endpoint.getPort()));
         }
         executorService = Executors.newFixedThreadPool(endpoints.size());
     }
@@ -38,14 +39,13 @@ public class RPCClient {
 
         List<Callable<HelloMessage>> tasks = new ArrayList<>();
 
-        for (RPCThread rpcThread : rpcThreads) {
-            tasks.add(() -> rpcThread.rpcHello(message));
+        for (RPCInterface rpcInterface : rpcInterfaces) {
+            tasks.add(() -> rpcInterface.rpcHello(message));
         }
         futureResponseList = executorService.invokeAll(tasks);
         for (Future<HelloMessage> futureResponse : futureResponseList) {
             HelloMessage response = futureResponse.get();
             System.out.println(response.getMessage());
         }
-
     }
 }

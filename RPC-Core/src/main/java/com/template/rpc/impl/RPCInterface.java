@@ -1,15 +1,17 @@
-package com.template.rpc;
+package com.template.rpc.impl;
 
+import com.template.rpc.RPCHelloServiceGrpc;
+import com.template.rpc.RPCService;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 
-public class RPCThread {
+public class RPCInterface {
     private final RPCHelloServiceGrpc.RPCHelloServiceBlockingStub blockingStub;
     public String ipAddress;
     public Integer port;
 
-    public RPCThread(String ipAddress, Integer port) {
+    public RPCInterface(String ipAddress, Integer port) {
         this.ipAddress = ipAddress;
         this.port = port;
 

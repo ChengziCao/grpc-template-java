@@ -1,5 +1,6 @@
 package com.template.rpc;
 
+import com.template.rpc.impl.RPCHelloImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
@@ -12,7 +13,7 @@ public class RPCServer {
 
     public RPCServer(int port) {
         this.port = port;
-        RPCHelloImp service = new RPCHelloImp();
+        RPCHelloImpl service = new RPCHelloImpl();
 
         // 构建 gRPC 服务器
         server = ServerBuilder.forPort(port)
